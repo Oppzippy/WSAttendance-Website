@@ -8,6 +8,10 @@ use AttendanceLogData;
 class AttendanceLog extends Model
 {
     protected $table = 'attendance_log_meta';
+    protected $fillable = [
+        'guild_id',
+        'uploader_id',
+    ];
 
     public static function uploadLog($guild, $uploader, $log) {
         $attendanceLog = self::Create(['guild_id' => $guild->id, 'uploader_id' => $uploader->id]);
