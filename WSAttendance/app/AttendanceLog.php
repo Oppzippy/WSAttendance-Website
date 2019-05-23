@@ -14,7 +14,10 @@ class AttendanceLog extends Model
     ];
 
     public static function uploadLog($guild, $uploader, $log) {
-        $attendanceLog = self::Create(['guild_id' => $guild->id, 'uploader_id' => $uploader->id]);
+        $attendanceLog = self::Create([
+            'guild_id' => $guild->id,
+            'uploader_id' => $uploader->id,
+        ]);
 
         foreach ($log as $update) {
             $timestamp = $update['timestamp'];
@@ -29,6 +32,19 @@ class AttendanceLog extends Model
                     ]);
                 }
             }
+        }
+    }
+
+    public function convertToTable() {
+        $updates = AttendanceLogData::where('log_id', '=', $this->id)
+                ->orderBy('time', 'asc')
+                ->get();
+        if (!empty($updates)) {
+            return [
+                'updates' => $updates,
+                'start_time' => $updates[0]['timestamp'],
+                'end_time' => $updates[count($updates)-1]['timestamp'],
+            ];
         }
     }
 }
