@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendanceLogMetaTable extends Migration
+class CreateGuildMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateAttendanceLogMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendance_log_meta', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('guild_members', function (Blueprint $table) {
             $table->bigInteger('guild_id');
-            $table->bigInteger('uploader_id');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->bigInteger('user_id');
+            $table->integer('permission_level')->default(0);
             $table->timestamps();
 
-            $table->index('guild_id');
+            $table->primary(['guild_id', 'user_id']);
         });
     }
 
@@ -32,6 +30,6 @@ class CreateAttendanceLogMetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance_log_meta');
+        Schema::dropIfExists('guild_members');
     }
 }
