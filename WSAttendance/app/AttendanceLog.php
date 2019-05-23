@@ -35,7 +35,7 @@ class AttendanceLog extends Model
         }
     }
 
-    public function convertToTable() {
+    public function convertToArray() {
         $updates = AttendanceLogData::where('log_id', '=', $this->id)
                 ->orderBy('time', 'asc')
                 ->get();
