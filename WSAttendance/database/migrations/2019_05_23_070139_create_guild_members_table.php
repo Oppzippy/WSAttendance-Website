@@ -14,12 +14,13 @@ class CreateGuildMembersTable extends Migration
     public function up()
     {
         Schema::create('guild_members', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('guild_id');
             $table->bigInteger('user_id');
             $table->integer('permission_level')->default(0);
             $table->timestamps();
 
-            $table->primary(['guild_id', 'user_id']);
+            $table->unique(['guild_id', 'user_id']);
         });
     }
 
