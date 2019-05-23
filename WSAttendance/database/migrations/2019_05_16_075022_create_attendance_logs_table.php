@@ -15,7 +15,10 @@ class CreateAttendanceLogsTable extends Migration
     {
         Schema::create('attendance_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('time');
+            $table->bigInteger('log_id');
+            $table->integer('duration'); // Amount of time that this is true for
+            $table->string('type');
+            $table->string('value');
             $table->timestamps();
         });
     }
