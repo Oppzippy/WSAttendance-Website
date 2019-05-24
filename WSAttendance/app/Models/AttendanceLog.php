@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use AttendanceLogData;
+use App\Models\AttendanceLogData;
 
 class AttendanceLog extends Model
 {
