@@ -23,4 +23,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function uploadedLogs() {
+        return $this->hasMany(AttendanceLog::class, 'uploader_id', 'id');
+    }
 }

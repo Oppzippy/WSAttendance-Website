@@ -58,6 +58,9 @@ class AttendanceLog extends Model
     }
 
     public function getPlayers() {
+        // TODO: There's probably a better way of doing this.
+        // Maybe another table for all players in each log?
+        // Or an index
         AttendanceLogData::distinct()
                 ->select('player')
                 ->where('log_id', '=', $this->id)
