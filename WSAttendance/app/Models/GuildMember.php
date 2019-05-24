@@ -19,4 +19,9 @@ class GuildMember extends Model
         // XXX check arg order
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    // Higher levels are better
+    public function hasPermissionLevel($level) {
+        return $this->permission_level >= $level;
+    }
 }
