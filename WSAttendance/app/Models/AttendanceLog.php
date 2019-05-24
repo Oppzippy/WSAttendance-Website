@@ -7,7 +7,7 @@ use App\Models\AttendanceLogData;
 
 class AttendanceLog extends Model
 {
-    protected $table = 'attendance_log_meta';
+    protected $table = 'attendance_logs';
     protected $fillable = [
         'guild_id',
         'uploader_id',
