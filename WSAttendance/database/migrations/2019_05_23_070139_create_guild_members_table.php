@@ -21,6 +21,17 @@ class CreateGuildMembersTable extends Migration
             $table->timestamps();
 
             $table->unique(['guild_id', 'user_id']);
+
+            $table->foreign('guild_id')
+                    ->references('id')
+                    ->on('guilds')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
         });
     }
 

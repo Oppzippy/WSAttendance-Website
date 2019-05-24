@@ -22,6 +22,15 @@ class CreateAttendanceLogMetaTable extends Migration
             $table->timestamps();
 
             $table->index('guild_id');
+            $table->foreign('guild_id')
+                    ->references('id')
+                    ->on('guilds')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+            $table->foreign('uploader_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade');
         });
     }
 

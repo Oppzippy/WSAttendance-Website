@@ -19,6 +19,11 @@ class CreateGuildsTable extends Migration
             $table->string('name')->unique();
             $table->string('visibility')->default('unlisted');
             $table->timestamps();
+
+            $table->foreign('owner_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade');
         });
     }
 

@@ -21,6 +21,12 @@ class CreateAttendanceLogsTable extends Migration
             $table->string('key');
             $table->string('value');
             $table->timestamps();
+
+            $table->foreign('log_id')
+                    ->references('id')
+                    ->on('attendance_log_meta')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');;
         });
     }
 
