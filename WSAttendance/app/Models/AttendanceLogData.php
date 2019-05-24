@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AttendanceLog;
 
 class AttendanceLogData extends Model
 {
@@ -14,4 +15,8 @@ class AttendanceLogData extends Model
         'key',
         'value',
     ];
+
+    public function attendanceLog() {
+        return $this->belongsTo(AttendanceLog::class, 'log_id', 'id');
+    }
 }

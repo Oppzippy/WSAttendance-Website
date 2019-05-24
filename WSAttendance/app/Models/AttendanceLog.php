@@ -13,6 +13,15 @@ class AttendanceLog extends Model
         'uploader_id',
     ];
 
+
+    public function logData() {
+        return $this->hasMany(AttendanceLogData::class, 'log_id', 'id');
+    }
+
+    public function guild() {
+        return $this->hasOne(Guild::class, 'id', 'guild_id');
+    }
+
     public static function uploadLog($guild, $uploader, $log) {
         $attendanceLog = self::Create([
             'guild_id' => $guild->id,
@@ -46,5 +55,12 @@ class AttendanceLog extends Model
                 'end_time' => $updates[count($updates)-1]['timestamp'],
             ];
         }
+    }
+
+    public function getPlayers() {
+        AttendanceLogData::distinct()
+                ->select('player')
+                ->where('log_id', '=', $this->id)
+                ->get();
     }
 }

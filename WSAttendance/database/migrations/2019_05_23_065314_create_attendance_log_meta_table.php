@@ -19,6 +19,8 @@ class CreateAttendanceLogMetaTable extends Migration
             $table->bigInteger('uploader_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->boolean('add')->default(true);
+            $table->boolean('subtract')->default(true);
             $table->timestamps();
 
             $table->index('guild_id');
