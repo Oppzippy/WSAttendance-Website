@@ -15,11 +15,18 @@ class AttendanceLog extends Model
 
 
     public function logData() {
+        // XXX check arg order
         return $this->hasMany(AttendanceLogData::class, 'log_id', 'id');
     }
 
     public function guild() {
-        return $this->hasOne(Guild::class, 'id', 'guild_id');
+        // XXX check arg order
+        return $this->belongsTo(Guild::class, 'id', 'guild_id');
+    }
+
+    public function uploader() {
+        // XXX check arg order
+        return $this->belongsTo(User::class, 'uploader_id', 'id');
     }
 
     public static function uploadLog($guild, $uploader, $log) {

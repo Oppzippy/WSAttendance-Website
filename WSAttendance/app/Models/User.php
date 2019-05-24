@@ -25,6 +25,7 @@ class User extends Authenticatable
     ];
 
     public function uploadedLogs() {
+        // XXX check arg order
         return $this->hasMany(AttendanceLog::class, 'uploader_id', 'id');
     }
 }

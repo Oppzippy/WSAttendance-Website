@@ -17,6 +17,7 @@ class AttendanceLogData extends Model
     ];
 
     public function attendanceLog() {
+        // XXX check arg order
         return $this->belongsTo(AttendanceLog::class, 'log_id', 'id');
     }
 }
